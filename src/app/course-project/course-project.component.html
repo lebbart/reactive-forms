@@ -1,0 +1,64 @@
+<div class="container">
+  <h3>This is test form for lessons!</h3>
+  <div class="row">
+    <div class="col-xs-12 col-sm-10 col-md-8 col-sm-offset-1 col-md-offset-2">
+      <form [formGroup]="courseForm" (ngSubmit)="onSubmit()">
+        <div>
+          <div class="form-group">
+            <label for="projectName">Project Name</label>
+            <input
+              type="text"
+              id="projectName"
+              formControlName="projectname"
+              class="form-control">
+            <span *ngIf="!courseForm.get('projectname').valid && courseForm.get('projectname').touched">
+              <span *ngIf="courseForm.get('projectname').errors['nameIsForbidden']">This name is forbidden!</span>
+              <span *ngIf="courseForm.get('projectname').errors['required']">This field is required!</span>
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="mail">Mail</label>
+            <input
+              type="text"
+              id="mail"
+              formControlName="mail"
+              class="form-control">
+            <span *ngIf="!courseForm.get('mail').valid && courseForm.get('mail').touched">
+              <span *ngIf="courseForm.get('mail').errors['required']">This field is required!</span>
+              <span *ngIf="courseForm.get('mail').errors['emailIsNotAccepted']">This is email can't be used: {{courseForm.get('mail').value}}</span>
+              <span *ngIf="courseForm.get('mail').errors['email']">This email is invalid, please enter valid email.</span>
+            </span>
+          </div>
+
+          <div class="form-group">
+            <label for="status">Status</label>
+            <select
+              name="status"
+              id="status"
+              class="form-control"
+              formControlName="status">
+
+              <option *ngFor="let status of statuses" value="{{status}}">
+                {{status}}
+              </option>
+            </select>
+
+            <span *ngIf="!courseForm.get('mail').valid && courseForm.get('mail').touched">
+              <span *ngIf="courseForm.get('mail').errors['required']">This field is required!</span>
+              <span *ngIf="courseForm.get('mail').errors['email']">This email is invalid, please enter valid email.</span>
+            </span>
+          </div>
+
+        </div>
+
+
+        <span *ngIf="!courseForm.valid && courseForm.touched">
+          <span>This form is invalid.</span>
+        </span>
+        <br>
+        <button [disabled]="!courseForm.valid" class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

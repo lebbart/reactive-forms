@@ -4,10 +4,12 @@ import { HttpModule } from '@angular/http';
 
 import { AppComponent } from './app.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { CourseProjectComponent } from './course-project/course-project.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    CourseProjectComponent
   ],
   imports: [
     BrowserModule,
